@@ -4,6 +4,7 @@
     written in jison. see: http://zaach.github.io/jison/
 
     TODOs: 
+    - control statements
     - boolean expressions
     - single-line comments (stop ignoring whitespace?) 
     - handle ++ -- += -=
@@ -50,11 +51,11 @@
 /lex
 
 
-%start expressions
+%start cfscript
 
 %% /* language grammar */
 
-expressions
+cfscript
     : script EOF
         {return true;}
     | component_definition EOF
