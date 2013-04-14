@@ -5,8 +5,7 @@
 
     TODOs: 
     - control statements
-    - boolean expressions
-    - single-line comments (stop ignoring whitespace?) 
+    - match exact whitespace (tabs, spaces)
     - handle ++ -- += -=
     - lots of other stuff
 */
@@ -16,15 +15,23 @@
 %%
 
 \s+                                     /* ignore whitespace (for now) */
-\/\*.*\*\/                              /* multi-line comments */
+\/\/.*\b                                return 'COMMENT_LINE'
+\/\*.*\*\/                              return 'COMMENT_LINES'
 [A-Z_][A-Z_\d]*\b                       return 'ALLCAPS'
 [Cc][Ff][Ss][Cc][Rr][Ii][Pp][Tt]        return 'CFSCRIPT'
 [Cc][Oo][Mm][Pp][Oo][Nn][Ee][Nn][Tt]    return 'COMPONENT'
 [Ff][Uu][Nn][Cc][Tt][Ii][Oo][Nn]        return 'FUNCTION'
+[Rr][Ee][Tt][Uu][Rr][Nn]                return 'RETURN'
 [Ii][Nn][Cc][Ll][Uu][Dd][Ee]            return 'INCLUDE'
 [Vv][Aa][Rr]                            return 'VAR'
+[Tt][Rr][Uu][Ee]                        return 'TRUE'
+[Ff][Aa][Ll][Ss][Ee]                    return 'FALSE'
 [0-9]+("."[0-9]+)?\b                    return 'NUMBER'
 [\"\'].*[\"\']                          return 'STRING'
+'+'                                     return '+'
+'-'                                     return '-'
+'*'                                     return '*'
+"/"                                     return '/'
 ";"                                     return ';'
 "{"                                     return '{'
 "}"                                     return '}'
@@ -34,7 +41,6 @@
 ")"                                     return ')'
 "<"                                     return '<'
 ">"                                     return '>'
-"/"                                     return '/'
 "."                                     return '.'
 ","                                     return ','
 ":"                                     return ':'
@@ -76,10 +82,13 @@ statement
     | expression ';'
     | function_definition
     | control
+    | COMMENT_LINE
+    | COMMENT_LINES
     ;
 
 control
     : INCLUDE STRING ';'
+    | RETURN expression ';'
     ;
 
 block
@@ -93,6 +102,7 @@ component_definition
 
 function_definition
     : FUNCTION NAME '(' function_opts ')' block
+    | FUNCTION NAME '(' item_list ')' block
     | FUNCTION NAME '(' ')' block
     ;
 
@@ -103,7 +113,7 @@ anonymous_function
 
 function_call
     : NAME '(' function_opts ')'
-    | NAME '(' expression_list ')'
+    | NAME '(' item_list ')'
     | NAME '(' ')'
     ;
 
@@ -122,7 +132,7 @@ function_opts
     ;
 
 function_opt
-    : NAME '=' expression
+    : NAME '=' item
     ;
 
 struct_options
@@ -141,7 +151,7 @@ assignment
     ;
 
 variable
-    : NAME '.' expression
+    : NAME '.' item
     | NAME '[' expression ']'
     | '[' ']'
     | '[' expression ']'
@@ -151,29 +161,46 @@ variable
     ;
 
 constant
-    : NUMBER
+    : boolean
+    | NUMBER
     | STRING
     ;
 
-boolean_expression
-    : expression bool expression
+boolean
+    : TRUE
+    | FALSE
     ;
 
-bool
+expression
+    : item comparator item
+    | item operator item
+    | item
+    ;
+
+comparator
     : '=='
     | '!='
+    | '>'
+    | '<'
     | '>='
     | '<='
     | '&&'
     | '||'
     ;
 
-expression_list 
-    : expression_list ',' expression
-    | expression
+operator
+    : '+'
+    | '-'
+    | '/'
+    | '*'
     ;
 
-expression
+item_list 
+    : item_list ',' item
+    | item
+    ;
+
+item
     : variable
     | constant
     | anonymous_function
