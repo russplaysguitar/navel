@@ -1,13 +1,13 @@
 /* 
-    cfscript parser
+	cfscript parser
 
-    written in jison. see: http://zaach.github.io/jison/
+	written in jison. see: http://zaach.github.io/jison/
 
-    TODOs: 
-    - control statements
-    - match exact whitespace (tabs, spaces)
-    - handle ++ -- += -=
-    - lots of other stuff
+	TODOs: 
+	- control statements
+	- match exact whitespace (tabs, spaces)
+	- handle ++ -- += -=
+	- lots of other stuff
 */
 
 /* lexical grammar */
@@ -62,147 +62,147 @@
 %% /* language grammar */
 
 cfscript
-    : script EOF
-        {return true;}
-    | component_definition EOF
-        {return true;}
-    ;
+	: script EOF
+		{return true;}
+	| component_definition EOF
+		{return true;}
+	;
 
 script
-    : '<' CFSCRIPT '>' statements '<' '/' CFSCRIPT '>'
-    ;
-
-statements
-    : statements statement
-    | statement
-    ;
-
-statement
-    : assignment ';'
-    | expression ';'
-    | function_definition
-    | control
-    | COMMENT_LINE
-    | COMMENT_LINES
-    ;
-
-control
-    : INCLUDE STRING ';'
-    | RETURN expression ';'
-    ;
-
-block
-    : '{' statements '}'
-    ;
-
+	: '<' CFSCRIPT '>' statements '<' '/' CFSCRIPT '>'
+	;
+	
 component_definition
-    : COMPONENT block
-    | COMPONENT component_opts block
-    ;
-
-function_definition
-    : FUNCTION NAME '(' function_opts ')' block
-    | FUNCTION NAME '(' item_list ')' block
-    | FUNCTION NAME '(' ')' block
-    ;
-
-anonymous_function
-    : FUNCTION '(' function_opts ')' block
-    | FUNCTION '(' ')' block
-    ;
-
-function_call
-    : NAME '(' function_opts ')'
-    | NAME '(' item_list ')'
-    | NAME '(' ')'
-    ;
+	: COMPONENT block
+	| COMPONENT component_opts block
+	;
 
 component_opts
-    : component_opts component_opt
-    | component_opt
-    ;
+	: component_opts component_opt
+	| component_opt
+	;
 
 component_opt
-    : NAME '=' STRING
-    ;
+	: NAME '=' STRING
+	;
 
-function_opts
-    : function_opts ',' function_opt
-    | function_opt
-    ;
+block
+	: '{' statements '}'
+	;
 
-function_opt
-    : NAME '=' item
-    ;
+statements
+	: statements statement
+	| statement
+	;
 
-struct_options
-    : struct_options ',' struct_opt
-    | struct_opt
-    ;
-
-struct_opt
-    : NAME ':' expression
-    | NAME '=' expression
-    ;
+statement
+	: assignment ';'
+	| expression ';'
+	| function_definition
+	| control
+	| COMMENT_LINE
+	| COMMENT_LINES
+	;
 
 assignment
-    : VAR NAME '=' expression
-    | variable '=' expression
-    ;
-
-variable
-    : NAME '.' item
-    | NAME '[' expression ']'
-    | '[' ']'
-    | '[' expression ']'
-    | '{' '}'
-    | '{' struct_options '}'
-    | NAME
-    ;
-
-constant
-    : boolean
-    | NUMBER
-    | STRING
-    ;
-
-boolean
-    : TRUE
-    | FALSE
-    ;
+	: VAR NAME '=' expression
+	| variable '=' expression
+	;
 
 expression
-    : item comparator item
-    | item operator item
-    | item
-    ;
-
-comparator
-    : '=='
-    | '!='
-    | '>'
-    | '<'
-    | '>='
-    | '<='
-    | '&&'
-    | '||'
-    ;
-
-operator
-    : '+'
-    | '-'
-    | '/'
-    | '*'
-    ;
-
-item_list 
-    : item_list ',' item
-    | item
-    ;
+	: item comparator item
+	| item operator item
+	| item
+	;
 
 item
-    : variable
-    | constant
-    | anonymous_function
-    | function_call
-    ;
+	: variable
+	| constant
+	| anonymous_function
+	| function_call
+	;
+
+function_definition
+	: FUNCTION NAME '(' function_opts ')' block
+	| FUNCTION NAME '(' item_list ')' block
+	| FUNCTION NAME '(' ')' block
+	;
+
+control
+	: INCLUDE STRING ';'
+	| RETURN expression ';'
+	;
+
+anonymous_function
+	: FUNCTION '(' function_opts ')' block
+	| FUNCTION '(' ')' block
+	;
+
+function_call
+	: NAME '(' function_opts ')'
+	| NAME '(' item_list ')'
+	| NAME '(' ')'
+	;
+
+function_opts
+	: function_opts ',' function_opt
+	| function_opt
+	;
+
+function_opt
+	: NAME '=' item
+	;
+
+struct_options
+	: struct_options ',' struct_opt
+	| struct_opt
+	;
+
+struct_opt
+	: NAME ':' expression
+	| NAME '=' expression
+	;
+
+variable
+	: NAME '.' item
+	| NAME '[' expression ']'
+	| '[' ']'
+	| '[' expression ']'
+	| '{' '}'
+	| '{' struct_options '}'
+	| NAME
+	;
+
+constant
+	: boolean
+	| NUMBER
+	| STRING
+	;
+
+boolean
+	: TRUE
+	| FALSE
+	;
+
+comparator
+	: '=='
+	| '!='
+	| '>'
+	| '<'
+	| '>='
+	| '<='
+	| '&&'
+	| '||'
+	;
+
+operator
+	: '+'
+	| '-'
+	| '/'
+	| '*'
+	;
+
+item_list 
+	: item_list ',' item
+	| item
+	;
