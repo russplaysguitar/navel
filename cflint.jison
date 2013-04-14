@@ -135,6 +135,7 @@ control
 
 anonymous_function
 	: FUNCTION '(' function_opts ')' block
+	| FUNCTION '(' item_list ')' block
 	| FUNCTION '(' ')' block
 	;
 
