@@ -16,8 +16,8 @@
   "author": "Russ Spivey <https://github.com/russplaysguitar/cflint>",
   "contributors": [
     {
-     "name": "Russ Spivey",
-     "email": "?@?.?"
+      "name": "Russ Spivey",
+      "email": "?@?.?"
     },
     {
       "name": "Adam Tuttle",
@@ -28,6 +28,9 @@
   "readmeFilename": "README.md",
   "devDependencies": {
     "mocha": "~1.9.0",
-    "assert": "~0.4.9"
+    "assert": "~0.4.9",
+    "jison": "~0.4.4",
+    "ebnf-parser": "~0.1.1",
+    "lex-parser": "~0.1.0"
   }
 }
