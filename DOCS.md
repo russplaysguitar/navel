@@ -23,6 +23,10 @@ Rules are intended to strongly suggest best practices for cfscript in most cases
 
 Rules are not intended to be used blindly. It is the responsibility of the developer to understand the rules and to determine when rules should or should not be applied. 
 
+### evaluate()
+
+Any use of `evaluate()` will fail. Suggested alternative: Don't use it.
+
 ### isDefined()
 
 Any use of `isDefined()` will fail. Suggested alternative: `StructKeyExists()`. 
