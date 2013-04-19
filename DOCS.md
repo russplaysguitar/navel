@@ -9,7 +9,11 @@ As lint rules are defined and agreed-upon via the project's [issues list](https:
 
 ## Linter Specifications
 
-### Supported Versions
+### Supported code
+
+Linting is limited to cfscript only. Tag linting is not supported. 
+
+### Supported versions
 
 The linter is designed to work for both CF 10 and Railo 4. Older versions are not explicitly supported, but the linter may be used with older versions by modifying the directives.
 
