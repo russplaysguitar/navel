@@ -27,6 +27,11 @@ Rules are not intended to be used blindly. It is the responsibility of the devel
 
 Any use of `isDefined()` will fail. Suggested alternative: `StructKeyExists()`. 
 
+### Unnecessary use of \# signs
+
+- Wrapping a variable in pound signs (hash marks) will fail. Example: `var x = #y#;`
+- Wrapping a variable in quotations and pound signs will warn if no other characters are included. Example: `var x = "#y#";`
+
 ## Directives (settings)
 
 All rules can be set to one of `fail`, `warn`, or `off`. Most rules default to `fail`. 
