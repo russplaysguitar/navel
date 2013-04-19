@@ -27,7 +27,7 @@ describe("cflint", function(){
 				result = result || false;
 			}
 
-			assert.equal(true, result);
+			assert.equal(result, true);
 
 		});
 
@@ -41,7 +41,7 @@ describe("cflint", function(){
 				result = result || false;
 			}
 
-			assert.equal(true, result);
+			assert.equal(result, true);
 
 		});
 
@@ -55,7 +55,7 @@ describe("cflint", function(){
 				result = result || false;
 			}
 
-			assert.equal(true, result);
+			assert.equal(result, true);
 
 		});
 
@@ -69,7 +69,7 @@ describe("cflint", function(){
 				result = result || false;
 			}
 
-			assert.equal(true, result);
+			assert.equal(result, true);
 
 		});
 
