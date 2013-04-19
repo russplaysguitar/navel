@@ -1,0 +1,33 @@
+{
+  "name": "cflint",
+  "version": "0.0.1",
+  "description": "CFScript Lint Tool",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha -R spec tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/russplaysguitar/cflint.git"
+  },
+  "author": "Russ Spivey <https://github.com/russplaysguitar/cflint>",
+  "contributors": [
+    {
+     "name": "Russ Spivey",
+     "email": "?@?.?"
+    },
+    {
+      "name": "Adam Tuttle",
+      "email": "adam@fusiongrokker.com"
+    }
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "assert": "~0.4.9"
+  }
+}
