@@ -7,6 +7,12 @@ At this point, documentation does not reflect actual functionality. It is intend
 
 As lint rules are defined and agreed-upon via the project's [issues list](https://github.com/russplaysguitar/cflint/issues), they should be added to the documentation. 
 
+## Linter Specifications
+
+### Supported Versions
+
+The linter is designed to work for both CF 10 and Railo 4. Older versions are not explicitly supported, but the linter may be used with older versions by modifying the directives.
+
 ## Lint Rules
 
 ### isDefined()
