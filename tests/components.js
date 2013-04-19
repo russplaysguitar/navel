@@ -8,10 +8,9 @@ function parse(input){
 describe("cflint", function(){
 
 	before(function(){
-		var fs = require('fs');
 		var ebnf = require('ebnf-parser');
 		var jison = require('jison').Parser;
-		var grammar = fs.readFileSync('cflint.jison').toString('utf-8');
+		var grammar = require('fs').readFileSync('cflint.jison').toString('utf-8');
 		parser = new jison( ebnf.parse(grammar) );
 	});
 
