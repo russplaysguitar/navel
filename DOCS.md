@@ -24,6 +24,8 @@ Rules are intended to strongly suggest best practices for cfscript in most cases
 Rules are not intended to be used blindly. It is the responsibility of the developer to understand the rules and to determine when rules should or should not be applied. 
 
 - `evaluate()` will fail lint. Suggested alternative: Don't use it.
+- `IIF()` will fail lint. Suggested alternative: ternary operator.
+- `DE()` will fail lint. Suggested alternative: none.
 - `incrementValue()` will fail lint. Suggested alternative: `++`
 - `decrementValue()` will fail lint. Suggested alternative: `--`
 - `setVariable()` will fail lint. Suggested alternative: `=`
