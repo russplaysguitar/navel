@@ -23,19 +23,16 @@ Rules are intended to strongly suggest best practices for cfscript in most cases
 
 Rules are not intended to be used blindly. It is the responsibility of the developer to understand the rules and to determine when rules should or should not be applied. 
 
-- `evaluate()` will fail. Suggested alternative: Don't use it.
-
-- `incrementValue()` will fail. Suggested alternative: `++`
-
-- `decrementValue()` will fail. Suggested alternative: `--`
-
-- `setVariable()` will fail. Suggested alternative: `=`
-
-- `isDefined()` will fail. Suggested alternative: `StructKeyExists()`. 
-
+- `evaluate()` will fail lint. Suggested alternative: Don't use it.
+- `incrementValue()` will fail lint. Suggested alternative: `++`
+- `decrementValue()` will fail lint. Suggested alternative: `--`
+- `setVariable()` will fail lint. Suggested alternative: `=`
+- `isDefined()` will fail lint. Suggested alternative: `StructKeyExists()`. 
 - Unnecessary use of \# signs
-  - Wrapping a variable in pound signs (hash marks) will fail. Example: `var x = #y#;`
+  - Wrapping a variable in pound signs (hash marks) will fail lint. Example: `var x = #y#;`
   - Wrapping a variable in quotations and pound signs will warn if no other characters are included. Example: `var x = "#y#";`
+- Use of reserved words will fail lint. 
+- Calling `rand()` without first calling `randomize()` will warn. 
 
 ## Directives (settings)
 
