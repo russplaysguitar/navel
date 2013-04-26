@@ -1,4 +1,4 @@
-cflint: Documentation
+navel: Documentation
 =====================
 
 ## About the Documentation
